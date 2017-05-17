@@ -1,10 +1,14 @@
 const React = require('react');
+const Input = require('./Input');
 
 class App extends React.Component{
 
 	render() {
 		return(
-			<div>Hello!</div>
+			<div>
+				<Input />
+				<div>Hello!</div>
+			</div>
 		)
 	}
 
