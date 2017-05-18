@@ -7,7 +7,6 @@ class App extends React.Component{
 		return(
 			<div>
 				<Input />
-				<div>Hello!</div>
 			</div>
 		)
 	}

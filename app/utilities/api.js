@@ -7,7 +7,7 @@ module.exports  ={
 		const searchURL = window.encodeURI( 'https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=' + terms + '&site=stackoverflow' );
 
 		return axios.get( searchURL )
-			.then( response => response );
+			.then( response => response.data.items );
 
 	}
 
