@@ -12,21 +12,26 @@ class Input extends React.Component{
 		}
 
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+	}
+
+	handleChange( event ) {
+
+		const value = event.target.value;
+
+		this.setState( () => {
+			return {
+				term: value
+			}
+		})
+
 	}
 
 	handleSubmit( event ) {
 
 		event.preventDefault();
 
-		this.setState( () => {
-			return {
-				term: 'stuff'
-			}
-		});
-
-		api.searchStack( 'https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=css&site=stackoverflow' );
-
-		console.log( 'hello' );
+		api.searchStack( this.state.term );
 
 	}
 
@@ -34,7 +39,7 @@ class Input extends React.Component{
 		return(
 			<form className="search-form" onSubmit={this.handleSubmit}>
 				<label>Search Stackoverflow</label>
-				<input type="search" />
+				<input type="search" onChange={this.handleChange}/>
 				<button type="submit">Search</button>
 			</form>
 		)
