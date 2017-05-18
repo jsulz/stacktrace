@@ -1,6 +1,14 @@
 const React = require('react');
 const api = require('../utilities/api');
 
+const Answers = ( props ) => {
+	console.log( props );
+
+	return (
+		<div>Hello!!!</div>
+	)
+}
+
 class Input extends React.Component{
 
 	constructor( props ) {
@@ -21,7 +29,8 @@ class Input extends React.Component{
 
 		this.setState( () => {
 			return {
-				term: value
+				term: value,
+				answers: null
 			}
 		})
 
@@ -31,17 +40,27 @@ class Input extends React.Component{
 
 		event.preventDefault();
 
-		api.searchStack( this.state.term );
+		api.searchStack( this.state.term )
+			.then( response => {
+				this.setState( () =>{
+					return{
+						answers: response.data.items
+					}
+				})
+			})
 
 	}
 
 	render() {
 		return(
-			<form className="search-form" onSubmit={this.handleSubmit}>
-				<label>Search Stackoverflow</label>
-				<input type="search" onChange={this.handleChange}/>
-				<button type="submit">Search</button>
-			</form>
+			<div>
+				<form className="search-form" onSubmit={this.handleSubmit}>
+					<label>Search Stackoverflow</label>
+					<input type="search" onChange={this.handleChange}/>
+					<button type="submit">Search</button>
+				</form>
+				{ !this.state.answers ? <div>Answers will be here</div> : <Answers answers={this.state.answers}/>}
+			</div>
 		)
 	}
 
