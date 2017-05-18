@@ -26,6 +26,18 @@ const Answers = ( props ) => {
 	)
 }
 
+const Stack = () => {
+	return(
+		<div className='stack'>
+		  <div className='stack-row'></div>
+		  <div className='stack-row'></div>
+		  <div className='stack-row'></div>
+		  <div className='stack-row'></div>
+		  <div className='stack-row'></div>
+		</div>
+	)
+}
+
 class Input extends React.Component{
 
 	constructor( props ) {
@@ -76,7 +88,7 @@ class Input extends React.Component{
 					<input type="search" onChange={this.handleChange}/>
 					<button type="submit">Search</button>
 				</form>
-				{ !this.state.answers ? <div>Answers will be here</div> : <Answers answers={this.state.answers}/>}
+				{ !this.state.answers ? <Stack /> : <Answers answers={this.state.answers}/>}
 			</div>
 		)
 	}
